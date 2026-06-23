@@ -1,0 +1,13 @@
+[
+  {
+    "id": "email-1782111008966",
+    "name": "Flutter Fox",
+    "email": "Flutterfoxin@gmail.com",
+    "password": "Flutter@8090",
+    "provider": "gmail",
+    "imapHost": "imap.gmail.com",
+    "imapPort": 993,
+    "smtpHost": "smtp.gmail.com",
+    "smtpPort": 465
+  }
+]

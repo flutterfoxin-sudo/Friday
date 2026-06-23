@@ -1,0 +1,306 @@
+/* ── Dr. Analyzer Holographic Diagnostic Scanner Terminal ── */
+.dr-analyzer-terminal {
+  position: fixed;
+  bottom: 254px; /* Stacked right above speech terminal: 24px + 220px + 10px gap */
+  right: 24px;
+  width: 380px;
+  height: 260px;
+  background: linear-gradient(rgba(12, 18, 25, 0.8) 50%, rgba(5, 7, 12, 0.9) 50%);
+  background-size: 100% 4px; /* subtle horizontal scanning lines */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 255, 187, 0.15);
+  border-radius: 6px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 255, 187, 0.04);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  font-family: 'Rajdhani', sans-serif;
+  letter-spacing: 1.2px;
+  user-select: none;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dr-analyzer-terminal:hover {
+  border-color: rgba(0, 255, 187, 0.45);
+  box-shadow: 0 12px 50px rgba(0, 255, 187, 0.15), inset 0 0 25px rgba(0, 255, 187, 0.08);
+}
+
+.dr-analyzer-terminal.minimized {
+  height: 40px !important;
+  padding: 10px 14px !important;
+  cursor: pointer;
+  background: rgba(12, 18, 25, 0.4) !important;
+  border-color: rgba(0, 255, 187, 0.1) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dr-analyzer-terminal.minimized:hover {
+  border-color: rgba(0, 255, 187, 0.25) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 187, 0.05) !important;
+}
+
+.dr-analyzer-terminal.minimized .analyzer-header {
+  border-bottom: none !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.dr-analyzer-terminal.active-analysis-glow {
+  border-color: rgba(0, 255, 187, 0.7) !important;
+  box-shadow: 0 12px 55px rgba(0, 255, 187, 0.25), inset 0 0 30px rgba(0, 255, 187, 0.12) !important;
+}
+
+/* Corner HUD Brackets */
+.analyzer-bracket {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: rgba(0, 255, 187, 0.5);
+  border-style: solid;
+  pointer-events: none;
+}
+.dr-t-l { top: 6px; left: 6px; border-width: 2px 0 0 2px; }
+.dr-t-r { top: 6px; right: 6px; border-width: 2px 2px 0 0; }
+.dr-b-l { bottom: 6px; left: 6px; border-width: 0 0 2px 2px; }
+.dr-b-r { bottom: 6px; right: 6px; border-width: 0 2px 2px 0; }
+
+/* Header info */
+.analyzer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed rgba(0, 255, 187, 0.25);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.analyzer-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.analyzer-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  background: rgba(0, 255, 187, 0.85);
+  box-shadow: 0 0 6px rgba(0, 255, 187, 0.6);
+}
+
+.analyzer-dot.analyzing {
+  background: #00ffbb;
+  box-shadow: 0 0 8px 2px #00ffbb;
+  animation: pulse-active 1.5s infinite ease-in-out;
+}
+
+.analyzer-label {
+  font-size: 9px;
+  font-weight: 900;
+  color: #e2e8f0;
+  text-shadow: 0 0 4px rgba(226, 232, 240, 0.3);
+  letter-spacing: 2px;
+}
+
+.analyzer-sec-label {
+  font-size: 8px;
+  color: rgba(0, 255, 187, 0.6);
+  font-weight: 500;
+}
+
+/* Scrollable report body */
+.analyzer-body {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.analyzer-body::-webkit-scrollbar {
+  width: 3px;
+}
+.analyzer-body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.01);
+}
+.analyzer-body::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 187, 0.25);
+  border-radius: 1px;
+}
+.analyzer-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 187, 0.5);
+}
+
+/* Dynamic Rotating Radar Diagnostic Overlay */
+.analyzer-radar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.radar-circle-outer {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border: 1px solid rgba(0, 255, 187, 0.12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  box-shadow: 0 0 15px rgba(0, 255, 187, 0.02);
+}
+
+.radar-circle-mid {
+  width: 70px;
+  height: 70px;
+  border: 1px dashed rgba(0, 255, 187, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radar-circle-inner {
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(0, 255, 187, 0.25);
+  border-radius: 50%;
+}
+
+.radar-sweep-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 55px; /* radius of outer circle */
+  height: 55px;
+  background: linear-gradient(35deg, rgba(0, 255, 187, 0.25) 0%, rgba(0, 255, 187, 0) 60%);
+  transform-origin: 0% 0%; /* center coordinates */
+  border-radius: 0 0 55px 0;
+  animation: radar-sweep 4s linear infinite;
+  pointer-events: none;
+}
+
+.radar-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px;
+  color: rgba(0, 255, 187, 0.7);
+  letter-spacing: 1.5px;
+  text-align: center;
+  text-shadow: 0 0 5px rgba(0, 255, 187, 0.3);
+}
+
+.radar-status-panel {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+  border-top: 1px dashed rgba(0, 255, 187, 0.15);
+  padding-top: 6px;
+}
+
+.radar-stat-item {
+  font-size: 7.5px;
+  color: rgba(0, 255, 187, 0.45);
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Active Analysis Report Layout */
+.analyzer-report-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.analyzer-report-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+  color: #00ffbb;
+  text-shadow: 0 0 6px rgba(0, 255, 187, 0.35);
+  margin-bottom: 8px;
+  border-bottom: 1px dashed rgba(0, 255, 187, 0.2);
+  padding-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.analyzer-report-text {
+  font-size: 10.5px;
+  color: #e2e8f0;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  font-family: 'Rajdhani', monospace;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.analyzer-download-btn {
+  background: rgba(0, 255, 187, 0.1);
+  border: 1px solid rgba(0, 255, 187, 0.3);
+  color: #00ffbb;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  outline: none;
+  align-self: flex-start;
+  transition: all 0.2s ease;
+}
+
+.analyzer-download-btn:hover {
+  background: rgba(0, 255, 187, 0.2);
+  border-color: #00ffbb;
+  box-shadow: 0 0 8px rgba(0, 255, 187, 0.3);
+}
+
+.analyzer-download-btn:active {
+  transform: scale(0.95);
+}
+
+/* Keyframes animations */
+@keyframes radar-sweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-active {
+  0% {
+    opacity: 0.6;
+    box-shadow: 0 0 6px 1px #00ffbb;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 10px 3px #00ffbb;
+  }
+  100% {
+    opacity: 0.6;
+    box-shadow: 0 0 6px 1px #00ffbb;
+  }
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .dr-analyzer-terminal {
+    width: calc(100% - 32px);
+    height: 180px;
+    bottom: 186px;
+    right: 16px;
+    left: 16px;
+  }
+}

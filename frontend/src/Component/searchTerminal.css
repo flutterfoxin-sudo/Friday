@@ -1,0 +1,376 @@
+/* ── Cyber Search Terminal HUD (Bottom-Left) ── */
+.search-terminal {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: 320px;
+  height: 220px;
+  background: rgba(4, 10, 8, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 243, 255, 0.15);
+  border-radius: 6px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(0, 255, 170, 0.03);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  font-family: 'Rajdhani', sans-serif;
+  letter-spacing: 1.2px;
+  user-select: none;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.search-terminal:hover {
+  border-color: rgba(0, 255, 170, 0.35);
+  box-shadow: 0 12px 50px rgba(0, 255, 170, 0.1), inset 0 0 20px rgba(0, 255, 170, 0.08);
+}
+
+.search-terminal.minimized {
+  height: 40px !important;
+  padding: 10px 14px !important;
+  cursor: pointer;
+  background: rgba(4, 10, 8, 0.4) !important;
+  border-color: rgba(0, 243, 255, 0.1) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+}
+
+.search-terminal.minimized:hover {
+  border-color: rgba(0, 255, 170, 0.25) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 170, 0.05) !important;
+}
+
+.search-terminal.minimized .search-term-header {
+  border-bottom: none !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.search-terminal.searching-glow {
+  border-color: rgba(0, 255, 170, 0.6) !important;
+  box-shadow: 0 12px 55px rgba(0, 255, 170, 0.25), inset 0 0 25px rgba(0, 255, 170, 0.1) !important;
+}
+
+/* Corner High-tech HUD Brackets */
+.search-terminal .term-bracket {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: rgba(0, 255, 170, 0.4);
+  border-style: solid;
+  pointer-events: none;
+}
+
+/* Header */
+.search-term-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed rgba(0, 255, 170, 0.2);
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.search-term-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.search-dot.idle {
+  background: rgba(0, 255, 170, 0.3);
+  box-shadow: 0 0 4px rgba(0, 255, 170, 0.15);
+}
+
+.search-dot.searching {
+  background: #00ffaa;
+  box-shadow: 0 0 10px 2px #00ffaa;
+  animation: search-pulse-active 1.2s infinite ease-in-out;
+}
+
+.search-dot.success {
+  background: #00f3ff;
+  box-shadow: 0 0 8px #00f3ff;
+}
+
+.search-dot.error {
+  background: #ff4a4a;
+  box-shadow: 0 0 8px #ff4a4a;
+}
+
+.search-label {
+  font-size: 9px;
+  font-weight: 700;
+  color: #e2e8f0;
+  text-shadow: 0 0 4px rgba(226, 232, 240, 0.3);
+}
+
+.search-sec-label {
+  font-size: 8px;
+  color: rgba(0, 255, 170, 0.5);
+  font-weight: 500;
+}
+
+@keyframes search-pulse-active {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+
+/* Scrollable Body Log */
+.search-term-body {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollbar styling */
+.search-term-body::-webkit-scrollbar {
+  width: 3px;
+}
+.search-term-body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+.search-term-body::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 170, 0.25);
+  border-radius: 1px;
+}
+.search-term-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 170, 0.5);
+}
+
+/* Text styles */
+.search-idle-message,
+.search-error-message {
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(226, 232, 240, 0.8);
+  font-family: 'Rajdhani', monospace;
+  font-weight: 500;
+}
+
+.search-error-message {
+  color: #ff8888;
+}
+
+.matrix-prompt {
+  color: #00ffaa;
+  font-family: 'Orbitron', monospace;
+  margin-right: 4px;
+}
+
+/* Matrix Code Rain Canvas */
+.matrix-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* Search Results Log styling */
+.search-results-log {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.search-results-meta {
+  font-size: 10px;
+  color: rgba(0, 255, 170, 0.7);
+  font-family: 'Orbitron', monospace;
+  border-bottom: 1px dashed rgba(0, 255, 170, 0.15);
+  padding-bottom: 6px;
+  line-height: 1.4;
+}
+
+.search-result-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.result-item-title {
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.result-index {
+  color: #00ffaa;
+  font-family: 'Orbitron', monospace;
+  margin-right: 6px;
+  font-size: 10px;
+}
+
+.result-link {
+  color: #e2e8f0;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-shadow: 0 0 4px rgba(226, 232, 240, 0.2);
+}
+
+.result-link:hover {
+  color: #00ffaa;
+  text-shadow: 0 0 6px rgba(0, 255, 170, 0.6);
+  text-decoration: underline;
+}
+
+.result-item-snippet {
+  font-size: 10px;
+  color: rgba(226, 232, 240, 0.65);
+  line-height: 1.3;
+  word-wrap: break-word;
+}
+
+.result-item-url {
+  font-size: 8px;
+  color: rgba(0, 255, 170, 0.45);
+  word-break: break-all;
+  font-family: 'Orbitron', monospace;
+}
+
+/* Responsive constraints to keep bottom left alignment clean */
+@media (max-width: 768px) {
+  .search-terminal {
+    width: calc(100% - 32px);
+    height: 150px;
+    top: auto;
+    bottom: 182px; /* stack above main terminal on mobile viewports */
+    left: 16px;
+    right: 16px;
+  }
+}
+
+/* ── HUD Inline Media Player Overlay ── */
+.search-embed-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(4, 10, 8, 0.96);
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  box-sizing: border-box;
+  padding: 4px 6px;
+}
+
+.embed-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px;
+  color: #00ffaa;
+  border-bottom: 1px dashed rgba(0, 255, 170, 0.2);
+  padding-bottom: 3px;
+  margin-bottom: 3px;
+}
+
+.embed-close-btn {
+  background: rgba(255, 74, 74, 0.1);
+  border: 1px solid rgba(255, 74, 74, 0.3);
+  border-radius: 2px;
+  color: #ff4a4a;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 7px;
+  cursor: pointer;
+  padding: 1px 4px;
+  transition: all 0.2s ease;
+}
+
+.embed-close-btn:hover {
+  background: rgba(255, 74, 74, 0.2);
+  color: #ff8888;
+  text-shadow: 0 0 6px #ff4a4a;
+  border-color: #ff4a4a;
+}
+
+.embed-panel-title {
+  font-size: 10px;
+  font-weight: 600;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 3px;
+  text-align: left;
+}
+
+.embed-iframe-wrapper {
+  flex-grow: 1;
+  width: 100%;
+  position: relative;
+  background: #000;
+  border: 1px solid rgba(0, 243, 255, 0.25);
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(0, 243, 255, 0.15);
+}
+
+.embed-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.embed-panel-controls {
+  display: flex;
+  justify-content: center;
+  padding-top: 4px;
+}
+
+.embed-action-btn {
+  background: rgba(0, 255, 170, 0.05);
+  border: 1px solid rgba(0, 255, 170, 0.3);
+  border-radius: 2px;
+  color: #00ffaa;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.embed-action-btn:hover {
+  background: rgba(0, 255, 170, 0.15);
+  border-color: #00ffaa;
+  text-shadow: 0 0 5px #00ffaa;
+}
+
+/* Playing status indicator */
+.search-dot.playing {
+  background: #00ffaa;
+  box-shadow: 0 0 10px 2px #00ffaa;
+  animation: search-pulse-active 0.8s infinite ease-in-out;
+}
+
+.playing-glow {
+  border-color: rgba(0, 255, 170, 0.5) !important;
+  box-shadow: 0 12px 50px rgba(0, 255, 170, 0.18), inset 0 0 20px rgba(0, 255, 170, 0.1) !important;
+}

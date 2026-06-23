@@ -1,0 +1,20 @@
+[
+  {
+    "id": "evt-101",
+    "title": "Daily Standup Meeting",
+    "start": "2026-06-13T09:30:00Z",
+    "end": "2026-06-13T10:00:00Z",
+    "attendees": ["team@agency.com"],
+    "meetLink": "https://meet.google.com/xyz-pdqk-mns",
+    "description": "Daily sync on project tasks and pipeline updates."
+  },
+  {
+    "id": "evt-102",
+    "title": "AI Agent Implementation Roadmap",
+    "start": "2026-06-13T14:00:00Z",
+    "end": "2026-06-13T15:00:00Z",
+    "attendees": ["john.doe@example.com"],
+    "meetLink": "https://meet.google.com/abc-defg-hij",
+    "description": "Discuss roadmaps and target milestones."
+  }
+]

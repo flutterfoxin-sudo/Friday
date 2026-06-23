@@ -1,0 +1,47 @@
+# Root Git Ignore
+
+# frontend dependencies & build
+frontend/node_modules/
+frontend/build/
+frontend/coverage/
+
+# backend dependencies & build
+backend/node_modules/
+backend/build/
+
+# environmental variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+frontend/.env
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# system files
+.DS_Store
+Thumbs.db
+
+# F.R.I.D.A.Y. Specific Core Ignores
+__pycache__/
+*.pyc
+autohedge/.venv/
+.venv/
+venv/
+backend/.wwebjs_cache/
+backend/skills/whatsapp_session/
+backend/skills/gmail_tokens/
+backend/skills/gmail_oauth_credentials.json
+backend/skills/*_messages.json
+backend/skills/*_logs.json
+backend/skills/whatsapp_page*.png
+backend/agent_workspace/
+.agent/
+backend/server_log.txt
+*.sqlite3
+*.db

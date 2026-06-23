@@ -1,0 +1,34 @@
+
+[F.R.I.D.A.Y. Trade Proposal]
+Asset: $BTC-USD
+Action: SELL
+Entry: $64593.00
+Target: $63022.29
+Stop Loss: $65640.14
+R:R: 1.50
+Confidence Score: 0.50
+
+Reasoning:
+- Technical indicators show SELL signal.
+- Favorable Risk/Reward ratio.
+- Sentiment score supports the trend.
+
+Reply CONFIRM to execute or SKIP to reject.
+=========================================
+
+[F.R.I.D.A.Y. Trade Proposal]
+Asset: $SOL-USD
+Action: BUY
+Entry: $74.14
+Target: $77.90
+Stop Loss: $71.64
+R:R: 1.50
+Confidence Score: 0.45
+
+Reasoning:
+- Technical indicators show BUY signal.
+- Favorable Risk/Reward ratio.
+- Sentiment score supports the trend.
+
+Reply CONFIRM to execute or SKIP to reject.
+=========================================

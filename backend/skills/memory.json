@@ -1,0 +1,48 @@
+{
+  "userProfile": {
+    "name": "User",
+    "preferences": {
+      "interests": [
+        "quantum",
+        "computing"
+      ]
+    },
+    "extractedFacts": []
+  },
+  "learnedKnowledge": {
+    "trading": [],
+    "geopolitics": [],
+    "legal": [],
+    "general": []
+  },
+  "searchHistory": [
+    {
+      "query": "what time is it",
+      "mode": "web",
+      "timestamp": "2026-06-21T15:08:55.536Z"
+    },
+    {
+      "query": "what is quantum computing",
+      "mode": "web",
+      "timestamp": "2026-06-21T15:08:57.362Z"
+    }
+  ],
+  "queryHistory": [
+    {
+      "query": "hello friday",
+      "timestamp": "2026-06-21T15:08:39.190Z"
+    },
+    {
+      "query": "what time is it",
+      "timestamp": "2026-06-21T15:08:55.536Z"
+    },
+    {
+      "query": "what is quantum computing",
+      "timestamp": "2026-06-21T15:08:57.362Z"
+    }
+  ],
+  "systemStats": {
+    "totalInteractions": 3,
+    "successfulSearches": 2
+  }
+}

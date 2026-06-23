@@ -1,0 +1,36 @@
+{
+  "last_updated": "2026-06-23T13:30:55.153281Z",
+  "total_days": 0,
+  "total_trades_completed": 0,
+  "total_trades_proposed": 0,
+  "win_rate": 0.0,
+  "total_pnl": 0.0,
+  "total_pnl_pct": 0.0,
+  "sharpe_estimate": null,
+  "max_drawdown_ever": 0.0,
+  "max_drawdown_today": 0.0,
+  "trades_today": 0,
+  "confirmation_rate": 0.0,
+  "skip_rate": 0.0,
+  "timeout_rate": 0.0,
+  "avg_analysis_time_seconds": 0.0,
+  "news_source_stats": {
+    "newsapi_success_rate": 0.0,
+    "gnews_success_rate": 0.0,
+    "youtube_success_rate": 0.0,
+    "yahoo_rss_success_rate": 0.0,
+    "cryptopanic_success_rate": 0.0,
+    "et_success_rate": 0.0,
+    "reuters_success_rate": 0.0
+  },
+  "real_money_gate": {
+    "days_history_met": false,
+    "win_rate_met": false,
+    "drawdown_met": false,
+    "min_trades_met": false,
+    "gate_passed": false,
+    "gate_fail_reasons": [],
+    "days_remaining": 14,
+    "trades_remaining": 30
+  }
+}

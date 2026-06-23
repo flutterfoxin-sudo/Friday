@@ -1,0 +1,42 @@
+import sys
+import time
+sys.path.append('C:\\Users\\hp\\OneDrive\\Desktop\\J.A.R.V.I.S\\backend\\skills')
+import autohedge_daemon
+import threading
+from whatsapp_handler import process_whatsapp_replies
+
+# Start polling
+def whatsapp_poll_loop():
+    while True:
+        try:
+            process_whatsapp_replies()
+        except Exception as e:
+            pass
+        time.sleep(2)
+        
+t = threading.Thread(target=whatsapp_poll_loop, daemon=True)
+t.start()
+
+# Load and prepare portfolio
+port = autohedge_daemon.load_paper_portfolio()
+port['trading_active'] = True
+autohedge_daemon.save_paper_portfolio(port)
+
+print("Running one trading cycle to generate proposals...")
+autohedge_daemon.run_trading_cycle()
+
+print("Sleeping 5 seconds before simulated reply...")
+time.sleep(5)
+
+# Simulate User replying
+with open('C:\\Users\\hp\\OneDrive\\Desktop\\J.A.R.V.I.S\\backend\\skills\\whatsapp_inbox.txt', 'w') as f:
+    f.write("CONFIRM BTC-USD\\n")
+    f.write("SKIP SOL-USD\\n")
+    
+print("Sent CONFIRM BTC-USD and SKIP SOL-USD. Waiting 5 seconds...")
+time.sleep(5)
+
+port = autohedge_daemon.load_paper_portfolio()
+print(f"Trading Active: {port.get('trading_active')}")
+for p in port['positions']:
+    print(f"Position {p['ticker']}: {p['status']}")

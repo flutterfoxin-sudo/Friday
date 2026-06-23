@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&display=swap');
+
+/* Lock viewport and disable default browser scrollbars */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden !important;
+  background-color: #04020a;
+  background-image: radial-gradient(circle at center, #0a0a23 0%, #03030d 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 
+   Override styles for the F.R.I.D.A.Y. component container 
+   to balance vertical layout and prevent vertical scrolling
+*/
+.friday-root {
+  flex-grow: 1;
+  min-height: 100vh !important;
+  height: 100vh !important;
+  background: transparent !important; /* rely on global body gradient */
+  padding-top: 74px !important; /* offset fixed navbar */
+  padding-bottom: 24px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: space-evenly !important; /* distribute space evenly based on viewport height */
+  overflow: hidden !important;
+  /* GPU compositing: promote .friday-root to its own layer to prevent layout thrashing */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Mobile-Only Redesign Overrides */
+@media (max-width: 768px) {
+  .App {
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    padding-bottom: 50px;
+  }
+  
+  .office-hud-terminal,
+  .trading-hud-overlay,
+  .terminal-container,
+  .dr-analyzer-wrapper,
+  .dr-analyzer,
+  .search-terminal {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    width: calc(100% - 20px) !important;
+    margin: 10px auto !important;
+    height: auto !important;
+    max-height: none !important;
+    box-sizing: border-box;
+  }
+}
+
+/* 
+   Override styles for the F.R.I.D.A.Y. component container 
+   to balance vertical layout and prevent vertical scrolling
+*/
+/* Mobile overrides for friday-root */
+@media (max-width: 768px) {
+  .friday-root {
+    flex-grow: 0 !important;
+    min-height: auto !important;
+    height: auto !important;
+    padding-top: 80px !important;
+    padding-bottom: 20px !important;
+    justify-content: center !important;
+    overflow: visible !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Responsive Media Queries for Desktop and Laptop Heights
+   ───────────────────────────────────────────────────────────── */
+
+/* Standard Laptops & Smaller Monitors (Height <= 850px or Width <= 1024px) */
+@media (max-height: 850px), (max-width: 1024px) {
+  .friday-root {
+    padding-top: 70px !important;
+    padding-bottom: 16px !important;
+  }
+  .fri-title {
+    margin-bottom: 16px !important;
+    font-size: 11px !important;
+    letter-spacing: 4px !important;
+  }
+  .fri-wrap {
+    width: 320px !important;
+    height: 320px !important;
+  }
+  .fri-canvas {
+    width: 320px !important;
+    height: 320px !important;
+  }
+  .fri-ring-outer {
+    inset: -18px !important;
+  }
+  .fri-ring-mid {
+    inset: -10px !important;
+  }
+  .fri-status {
+    margin-top: 16px !important;
+    font-size: 10px !important;
+    letter-spacing: 3px !important;
+  }
+  .fri-meter {
+    margin-top: 8px !important;
+    height: 22px !important;
+  }
+  .fri-bar {
+    width: 2.5px !important;
+  }
+  .fri-btns {
+    margin-top: 16px !important;
+    gap: 8px !important;
+  }
+  .fri-btn {
+    font-size: 11px !important;
+    padding: 6px 14px !important;
+    letter-spacing: 1.5px !important;
+  }
+  .fri-mic-btn {
+    margin-top: 10px !important;
+    padding: 5px 16px !important;
+    font-size: 9px !important;
+  }
+  .fri-hint {
+    margin-top: 8px !important;
+    font-size: 10px !important;
+  }
+}
+
+/* Ultra-Compact Screens or Small Desktop Viewports (Height <= 700px) */
+@media (max-height: 700px) {
+  .friday-root {
+    padding-top: 64px !important;
+    padding-bottom: 8px !important;
+  }
+  .fri-title {
+    margin-bottom: 8px !important;
+    font-size: 10px !important;
+    letter-spacing: 3px !important;
+  }
+  .fri-wrap {
+    width: 260px !important;
+    height: 260px !important;
+  }
+  .fri-canvas {
+    width: 260px !important;
+    height: 260px !important;
+  }
+  .fri-ring-outer {
+    inset: -14px !important;
+  }
+  .fri-ring-mid {
+    inset: -8px !important;
+  }
+  .fri-status {
+    margin-top: 10px !important;
+    font-size: 9px !important;
+    letter-spacing: 2px !important;
+  }
+  .fri-meter {
+    margin-top: 6px !important;
+    height: 16px !important;
+  }
+  .fri-btns {
+    margin-top: 10px !important;
+    gap: 6px !important;
+  }
+  .fri-btn {
+    font-size: 10px !important;
+    padding: 4px 10px !important;
+    letter-spacing: 1px !important;
+  }
+  .fri-mic-btn {
+    margin-top: 8px !important;
+    padding: 4px 12px !important;
+    font-size: 8px !important;
+  }
+  .fri-hint {
+    display: none !important; /* Hide non-essential help instructions to preserve room */
+  }
+}
