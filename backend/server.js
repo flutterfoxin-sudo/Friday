@@ -139,6 +139,16 @@ app.get('/api/engine/status', async (req, res) => {
 });
 
 // ── ATOMIC CLOCK SYNC ─────────────────────────────────────────
+app.get('/api/engine/groups', async (req, res) => {
+  try {
+    const whatsapp = require('./skills/whatsapp');
+    const acc = global.whatsappAccounts['friday-session'] || Object.values(global.whatsappAccounts).find(a => a.ready);
+    if (!acc || !acc.client) return res.json({ error: 'No client' });
+    const chats = await acc.client.getChats();
+    const groups = chats.filter(c => c.isGroup).map(c => ({ name: c.name, id: c.id._serialized }));
+    res.json({ groups, globalDiag: global.diagnosticsGroupId });
+  } catch(e) { res.status(500).json({error: e.message}); }
+});
 app.get('/api/time/atomic', async (req, res) => {
   let detectedTimezone = req.query.timezone || 'Etc/UTC';
   let locationLabel = '';

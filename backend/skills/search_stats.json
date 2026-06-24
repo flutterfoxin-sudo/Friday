@@ -1,9 +1,9 @@
 {
   "consecutiveFailures": 2,
-  "totalRequests": 167,
+  "totalRequests": 175,
   "apiRequests": 2,
-  "fallbackRequests": 167,
-  "avgLatencyMs": 1137,
+  "fallbackRequests": 175,
+  "avgLatencyMs": 1170,
   "categoryPreferences": {
     "youtube": "fallback",
     "web": "api"
