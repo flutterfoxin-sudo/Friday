@@ -21,7 +21,8 @@ function sendDiagnosticAlert(type, message, stack) {
     whatsapp.execute({
       action: 'send',
       to: target,
-      message: `🚨 *[F.R.I.D.A.Y. NODE CRITICAL ERROR]*\nType: ${type}\nMessage: ${message}\n\nTrace:\n${stack ? stack.substring(0, 500) : 'N/A'}`
+      message: `🚨 *[F.R.I.D.A.Y. NODE CRITICAL ERROR]*\nType: ${type}\nMessage: ${message}\n\nTrace:\n${stack ? stack.substring(0, 500) : 'N/A'}\n\n*Choose an action below:*`,
+      pollOptions: ["Restart Server", "Ignore Error", "Clear Cache", "Fetch Logs"]
     }).catch(() => {});
   } catch (e) {}
 }

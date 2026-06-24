@@ -48,6 +48,12 @@ def send_whatsapp_proposal(trade_dict):
 * Profit Target: ${target:.2f}
 * Stop Loss Limit: ${sl:.2f}
 
+📈 *Technical Chart Patterns (Live):*
+* RSI (14): {trade_dict['technical_snapshot'].get('rsi_value', 0):.2f} ({trade_dict['technical_snapshot'].get('rsi_signal', 'N/A')})
+* MACD Signal: {trade_dict['technical_snapshot'].get('macd_signal', 'N/A')}
+* Trend: {trade_dict['technical_snapshot'].get('trend', 'N/A')}
+* Bollinger Bands: {trade_dict['technical_snapshot'].get('bollinger_position', 'N/A')}
+
 🎯 *Mathematical Projections:*
 * Allocation: {qty:.4f} units (~${(qty*entry):.2f} capital)
 * Expected Profit: +${total_gain:.2f} (+{(gain_per_unit/entry)*100:.1f}%)
@@ -58,7 +64,6 @@ def send_whatsapp_proposal(trade_dict):
 
 📰 *Algorithmic Research & Analysis:*
 {trade_dict['reasoning_summary']}
-
 =========================================
 """
     try:
